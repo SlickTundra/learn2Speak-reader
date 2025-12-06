@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Pratique orale – Espagnol & Russe | Learn2Speak Academy</title>
+  <title>Pratique orale – Multi-langues | Learn2Speak Academy</title>
   <meta name="description" content="Outil premium gratuit – lecture ligne par ligne, voix natives, zéro serveur.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -708,7 +708,7 @@
       <section class="hero">
         <div class="eyebrow">
           <span class="eyebrow-pill">Pratique orale</span>
-          <span>Espagnol · Russe · Français</span>
+          <span>Anglais · Espagnol · Italien · Allemand · Russe · Français</span>
         </div>
         <h1>
           Lis ton script, <span class="gradient">ligne par ligne</span>,<br>
@@ -716,7 +716,7 @@
         </h1>
         <p class="hero-sub">
           Colle ton dialogue, choisis la langue, puis fais lire chaque ligne à ton rythme.
-          Idéal pour pratiquer la prononciation en espagnol et en russe (ou revoir un texte en français).
+          Idéal pour pratiquer la prononciation en plusieurs langues (EN/ES/IT/DE/RU/FR).
         </p>
 
         <div class="hero-grid">
@@ -741,7 +741,7 @@
               <span class="icon">🌍</span> Voix natives système
             </div>
             <div class="hero-card-body">
-              Utilise les voix espagnoles, russes ou françaises déjà installées sur ton OS.
+              Utilise les voix installées sur ton OS pour chaque langue supportée.
             </div>
           </div>
           <div class="hero-card">
@@ -768,7 +768,16 @@
           </div>
           <div class="pill-stack">
             <div class="pill-lang">
+              <span class="flag">🇬🇧</span><strong>Anglais</strong><span>en-US / en-GB</span>
+            </div>
+            <div class="pill-lang">
               <span class="flag">🇪🇸</span><strong>Espagnol</strong><span>es-ES / es-MX</span>
+            </div>
+            <div class="pill-lang">
+              <span class="flag">🇮🇹</span><strong>Italien</strong><span>it-IT</span>
+            </div>
+            <div class="pill-lang">
+              <span class="flag">🇩🇪</span><strong>Allemand</strong><span>de-DE</span>
             </div>
             <div class="pill-lang">
               <span class="flag">🇷🇺</span><strong>Russe</strong><span>ru-RU</span>
@@ -789,7 +798,7 @@
           </div>
 
           <div class="textarea-wrap">
-            <textarea id="textInput" placeholder="Exemple :&#10;Hola, ¿cómo estás?&#10;Muy bien, gracias. ¿Y tú?&#10;Мне нравится учить языки.&#10;J’adore pratiquer à voix haute."></textarea>
+            <textarea id="textInput" placeholder="Exemple :&#10;Hello, how are you?&#10;Hola, ¿cómo estás?&#10;Ciao, come stai?&#10;Wie geht es dir?&#10;Мне нравится учить языки.&#10;J’adore pratiquer à voix haute."></textarea>
             <div class="textarea-footer">
               <div class="tiny-pill">
                 <span>Entrée</span><span> = nouvelle ligne</span>
@@ -822,11 +831,20 @@
 
             <div class="secondary-controls">
               <div class="select-row">
-                <label for="languageSelect">Langue de la voix :</label>
+                <label for="languageSelect">Langue :</label>
                 <select id="languageSelect">
+                  <option value="en">Anglais (EN)</option>
                   <option value="es">Espagnol (ES / MX)</option>
+                  <option value="it">Italien</option>
+                  <option value="de">Allemand</option>
                   <option value="ru">Russe</option>
                   <option value="fr">Français</option>
+                </select>
+              </div>
+              <div class="select-row">
+                <label for="voiceSelect">Voix / style :</label>
+                <select id="voiceSelect">
+                  <option value="">Par défaut (système)</option>
                 </select>
               </div>
               <div class="slider-row">
@@ -880,6 +898,7 @@
       const btnStop = document.getElementById('btnStop');
       const btnReset = document.getElementById('btnReset');
       const languageSelect = document.getElementById('languageSelect');
+      const voiceSelect = document.getElementById('voiceSelect');
       const rateSlider = document.getElementById('rateSlider');
       const rateValue = document.getElementById('rateValue');
       const linesList = document.getElementById('linesList');
@@ -914,38 +933,61 @@
       updateRateDisplay();
 
       function getLangPrefix(code){
+        if(code === 'en') return 'en';
         if(code === 'es') return 'es';
+        if(code === 'it') return 'it';
+        if(code === 'de') return 'de';
         if(code === 'ru') return 'ru';
         if(code === 'fr') return 'fr';
         return '';
       }
 
-      function pickVoice(){
-        if(!voices || !voices.length){
-          speechSynthesis.getVoices(); // trigger load
-          currentVoice = null;
-          voiceInfo.textContent = 'Aucune (par défaut système)';
-          return;
-        }
+      function rebuildVoiceSelect(){
         const prefix = getLangPrefix(languageSelect.value);
-        if(!prefix){
-          currentVoice = null;
-          voiceInfo.textContent = 'Aucune (par défaut système)';
-          return;
+        let matching = [];
+        if(voices && voices.length && prefix){
+          matching = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith(prefix));
         }
-        const matching = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith(prefix));
-        const localFirst = matching.sort((a,b)=>{
-          const al = a.localService ? 0 : 1;
-          const bl = b.localService ? 0 : 1;
-          if(al !== bl) return al - bl;
-          return a.name.localeCompare(b.name);
+
+        voiceSelect.innerHTML = '';
+
+        const defaultOpt = document.createElement('option');
+        defaultOpt.value = '';
+        defaultOpt.textContent = matching.length
+          ? 'Par défaut ('+prefix+')'
+          : 'Par défaut (système)';
+        voiceSelect.appendChild(defaultOpt);
+
+        matching.forEach(v => {
+          const opt = document.createElement('option');
+          opt.value = v.name + '|' + v.lang;
+          opt.textContent = v.name + ' (' + v.lang + (v.localService ? ' · local' : '') + ')';
+          voiceSelect.appendChild(opt);
         });
-        currentVoice = localFirst[0] || null;
-        if(currentVoice){
-          voiceInfo.textContent = currentVoice.name + ' (' + currentVoice.lang + ')';
-        } else {
-          voiceInfo.textContent = 'Aucune voix '+prefix+' trouvée (utilise la voix par défaut)';
+
+        if(matching.length){
+          voiceSelect.selectedIndex = 1; // première vraie voix
+          const [name, lang] = voiceSelect.value.split('|');
+          const chosen = matching.find(v => v.name === name && v.lang === lang);
+          currentVoice = chosen || null;
+          if(currentVoice){
+            voiceInfo.textContent = currentVoice.name + ' (' + currentVoice.lang + ')';
+          }else{
+            currentVoice = null;
+            voiceInfo.textContent = 'Par défaut ('+prefix+')';
+          }
+        }else{
+          currentVoice = null;
+          if(prefix){
+            voiceInfo.textContent = 'Aucune voix '+prefix+' trouvée (utilise la voix par défaut)';
+          }else{
+            voiceInfo.textContent = 'Aucune (par défaut système)';
+          }
         }
+      }
+
+      function pickVoice(){
+        rebuildVoiceSelect();
       }
 
       function loadVoices(){
@@ -956,6 +998,24 @@
       if(typeof speechSynthesis !== 'undefined'){
         speechSynthesis.onvoiceschanged = loadVoices;
       }
+
+      voiceSelect.addEventListener('change', ()=>{
+        const prefix = getLangPrefix(languageSelect.value);
+        const val = voiceSelect.value;
+        if(!val){
+          currentVoice = null;
+          voiceInfo.textContent = prefix ? 'Par défaut ('+prefix+')' : 'Par défaut (système)';
+          return;
+        }
+        const [name, lang] = val.split('|');
+        const match = voices.find(v => v.name === name && v.lang === lang);
+        currentVoice = match || null;
+        if(currentVoice){
+          voiceInfo.textContent = currentVoice.name + ' (' + currentVoice.lang + ')';
+        }else{
+          voiceInfo.textContent = prefix ? 'Par défaut ('+prefix+')' : 'Par défaut (système)';
+        }
+      });
 
       function setStatus(text, state){
         statusText.textContent = text;
@@ -1045,9 +1105,13 @@
         utter.pitch = 1;
         const prefix = getLangPrefix(languageSelect.value);
         if(prefix){
-          utter.lang = prefix === 'es' ? 'es-ES' :
-                       prefix === 'ru' ? 'ru-RU' :
-                       'fr-FR';
+          utter.lang =
+            prefix === 'en' ? 'en-US' :
+            prefix === 'es' ? 'es-ES' :
+            prefix === 'it' ? 'it-IT' :
+            prefix === 'de' ? 'de-DE' :
+            prefix === 'ru' ? 'ru-RU' :
+            'fr-FR';
         }
         if(currentVoice){
           utter.voice = currentVoice;
@@ -1188,13 +1252,15 @@
         isPaused = false;
         clearActiveLines();
         renderLines();
-        languageSelect.value = 'es';
+        languageSelect.value = 'en';
         rateSlider.value = '1';
         updateRateDisplay();
         pickVoice();
         setStatus('Page réinitialisée. Colle un nouveau texte pour recommencer.','idle');
       });
 
+      // état initial
+      languageSelect.value = 'en';
       setStatus('En attente : colle ton texte puis clique sur « Préparer les lignes ».','idle');
     })();
   </script>
