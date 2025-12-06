@@ -1,0 +1,1202 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Pratique orale – Espagnol & Russe | Learn2Speak Academy</title>
+  <meta name="description" content="Outil premium gratuit – lecture ligne par ligne, voix natives, zéro serveur.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Palette type Learn2Speak: fond bleu nuit, texte clair, accent doré */
+      --bg:#020617;
+      --bg-soft:rgba(15,23,42,0.96);
+      --accent:#fbbf24;
+      --accent-strong:#eab308;
+      --accent-soft:rgba(234,179,8,.16);
+      --text:#f9fafb;
+      --muted:#9ca3af;
+      --border:rgba(148,163,184,0.6);
+
+      --radius-xl:26px;
+      --radius-lg:18px;
+      --radius-md:14px;
+      --radius-pill:999px;
+      --shadow-soft:0 24px 48px rgba(15,23,42,0.8);
+      --shadow-subtle:0 18px 30px rgba(15,23,42,0.55);
+      --transition:240ms ease;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    body{
+      font-family:"Poppins",sans-serif;
+      background:
+        radial-gradient(circle at 0% 0%,#0b1120 0,#020617 45%,#020617 100%);
+      color:var(--text);
+      min-height:100vh;
+      position:relative;
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='6'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
+      mix-blend-mode:soft-light;
+    }
+
+    .app-shell{
+      max-width:1180px;
+      margin:0 auto;
+      padding:20px 20px 40px;
+      display:flex;
+      flex-direction:column;
+      gap:24px;
+      min-height:100vh;
+      position:relative;
+      z-index:1;
+    }
+    @media(min-width:900px){
+      .app-shell{padding:40px 48px 60px}
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .logo-mark{
+      width:48px;
+      height:48px;
+      background:radial-gradient(circle at 30% 0%,#fbbf24,#f59e0b 45%,#7c2d12);
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 12px 32px rgba(15,23,42,.9);
+    }
+    .logo-mark svg{width:28px;height:28px;fill:#020617}
+
+    .logo-text{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+    .logo-title{
+      font-weight:700;
+      font-size:13px;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+    .logo-sub{
+      font-size:11px;
+      color:var(--muted);
+    }
+
+    .header-right{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .pill-badge{
+      background:rgba(22,163,74,.14);
+      border:1px solid rgba(22,163,74,.45);
+      color:#bbf7d0;
+      padding:6px 12px;
+      border-radius:var(--radius-pill);
+      font-size:11px;
+      font-weight:600;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .pill-dot{
+      width:9px;
+      height:9px;
+      background:#22c55e;
+      border-radius:50%;
+      box-shadow:0 0 12px rgba(34,197,94,.9);
+      animation:pulse 2s infinite;
+    }
+    @keyframes pulse{
+      0%,100%{transform:scale(1);opacity:1}
+      50%{transform:scale(1.2);opacity:.6}
+    }
+
+    .btn-ghost{
+      background:rgba(15,23,42,.8);
+      border:1px solid rgba(148,163,184,.6);
+      padding:8px 16px;
+      border-radius:var(--radius-pill);
+      font-size:12px;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition:background var(--transition),box-shadow var(--transition),transform var(--transition),border-color var(--transition);
+      backdrop-filter:blur(12px);
+      color:var(--text);
+    }
+    .btn-ghost span.icon{
+      font-size:14px;
+      transform:translateY(1px);
+    }
+    .btn-ghost:hover{
+      background:rgba(15,23,42,.95);
+      border-color:rgba(249,250,251,.4);
+      box-shadow:0 14px 30px rgba(15,23,42,.9);
+      transform:translateY(-1px);
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:1.1fr 1.2fr;
+      gap:28px;
+      align-items:stretch;
+      margin-top:8px;
+    }
+    @media(max-width:900px){
+      .layout{grid-template-columns:1fr;}
+    }
+
+    .hero{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      padding:18px 4px 0;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:4px 10px;
+      background:rgba(15,23,42,.9);
+      border-radius:var(--radius-pill);
+      font-size:11px;
+      color:var(--muted);
+      border:1px solid rgba(148,163,184,.6);
+      align-self:flex-start;
+    }
+    .eyebrow-pill{
+      padding:2px 8px;
+      border-radius:999px;
+      background:var(--accent-soft);
+      color:var(--accent-strong);
+      font-weight:600;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.09em;
+    }
+
+    h1{
+      font-size:clamp(26px,3vw,30px);
+      line-height:1.1;
+      letter-spacing:-.03em;
+      color:var(--text);
+    }
+    h1 span.gradient{
+      background:linear-gradient(120deg,#fbbf24,#f97316);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+
+    .hero-sub{
+      font-size:13px;
+      color:var(--muted);
+      max-width:420px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+      margin-top:10px;
+    }
+    .hero-card{
+      background:rgba(15,23,42,.9);
+      border-radius:var(--radius-lg);
+      padding:10px 12px;
+      border:1px solid var(--border);
+      box-shadow:0 14px 30px rgba(15,23,42,.8);
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .hero-card-title{
+      font-size:11px;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      color:var(--text);
+    }
+    .hero-card-title span.icon{font-size:13px;}
+    .hero-card-body{
+      font-size:11px;
+      color:var(--muted);
+    }
+
+    .hero-footnote{
+      margin-top:10px;
+      font-size:11px;
+      color:var(--muted);
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .hero-footnote span.dot{
+      width:5px;
+      height:5px;
+      border-radius:50%;
+      background:var(--accent-strong);
+    }
+
+    .card{
+      background:var(--bg-soft);
+      border-radius:30px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow-soft);
+      padding:16px 16px 18px;
+      backdrop-filter:blur(18px);
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+    @media(min-width:900px){
+      .card{padding:18px 20px 22px;}
+    }
+
+    .card-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .card-title-group{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .card-title{
+      font-size:14px;
+      font-weight:600;
+      color:var(--text);
+    }
+    .card-sub{
+      font-size:11px;
+      color:var(--muted);
+    }
+
+    .pill-stack{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .pill-lang{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:4px 10px;
+      border-radius:999px;
+      background:rgba(15,23,42,.9);
+      border:1px solid var(--border);
+      font-size:10px;
+      color:var(--muted);
+    }
+    .pill-lang span.flag{font-size:13px;}
+    .pill-lang strong{font-size:11px;color:var(--text);}
+
+    .card-body{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .field-label-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:11px;
+      color:var(--muted);
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .field-label-row strong{
+      color:var(--text);
+      font-size:12px;
+    }
+    .field-label-row small{font-size:10px;}
+    .badge-inline{
+      padding:3px 8px;
+      background:var(--accent-soft);
+      color:var(--accent-strong);
+      border-radius:999px;
+      font-size:10px;
+      font-weight:600;
+    }
+
+    .textarea-wrap{
+      position:relative;
+      border-radius:var(--radius-lg);
+      overflow:hidden;
+      background:rgba(15,23,42,.9);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow-subtle);
+    }
+    textarea{
+      width:100%;
+      border:none;
+      resize:vertical;
+      min-height:120px;
+      padding:12px 13px 30px;
+      font-family:"Poppins",sans-serif;
+      font-size:13px;
+      line-height:1.45;
+      background:transparent;
+      color:var(--text);
+      outline:none;
+    }
+    textarea::placeholder{
+      color:rgba(148,163,184,.9);
+      font-size:12px;
+    }
+
+    .textarea-footer{
+      position:absolute;
+      inset-inline:8px;
+      bottom:6px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:10px;
+      color:var(--muted);
+    }
+    .tiny-pill{
+      padding:3px 7px;
+      border-radius:999px;
+      background:rgba(15,23,42,.9);
+      border:1px solid var(--border);
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+    }
+    .tiny-pill span.kbd{
+      font-size:9px;
+      padding:2px 4px;
+      border-radius:5px;
+      background:#020617;
+      color:#e5e7eb;
+    }
+
+    .controls-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:4px;
+    }
+    .primary-controls,.secondary-controls{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    button{font-family:"Poppins",sans-serif;}
+
+    .btn-primary{
+      border:none;
+      padding:7px 13px;
+      border-radius:var(--radius-pill);
+      background:linear-gradient(120deg,#fbbf24,#f97316);
+      color:#020617;
+      font-size:12px;
+      font-weight:600;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      cursor:pointer;
+      box-shadow:0 14px 30px rgba(250,204,21,.6);
+      transition:transform var(--transition),box-shadow var(--transition),filter var(--transition);
+    }
+    .btn-primary span.icon{font-size:14px;transform:translateY(1px);}
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      filter:brightness(1.05);
+      box-shadow:0 18px 40px rgba(250,204,21,.8);
+    }
+
+    .btn-secondary{
+      border:none;
+      padding:7px 11px;
+      border-radius:999px;
+      background:rgba(15,23,42,.9);
+      color:var(--text);
+      font-size:11px;
+      font-weight:500;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      cursor:pointer;
+      transition:background var(--transition),box-shadow var(--transition),transform var(--transition),opacity var(--transition);
+    }
+    .btn-secondary span.icon{font-size:13px;}
+    .btn-secondary:hover{
+      background:rgba(15,23,42,1);
+      box-shadow:0 10px 20px rgba(15,23,42,.9);
+      transform:translateY(-1px);
+    }
+    button:disabled{
+      opacity:.48;
+      cursor:not-allowed;
+      box-shadow:none;
+      transform:none;
+    }
+
+    .select-row{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:11px;
+      color:var(--muted);
+      flex-wrap:wrap;
+    }
+    .select-row label{
+      font-weight:500;
+      color:var(--text);
+    }
+    select{
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.85);
+      padding:5px 10px;
+      font-size:11px;
+      background:rgba(15,23,42,.9);
+      color:var(--text);
+      outline:none;
+      min-width:130px;
+    }
+
+    .slider-row{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:11px;
+      color:var(--muted);
+      flex-wrap:wrap;
+    }
+    .slider-row span.value{
+      font-variant-numeric:tabular-nums;
+      min-width:32px;
+      text-align:right;
+      color:var(--text);
+      font-weight:500;
+    }
+    input[type="range"]{
+      -webkit-appearance:none;
+      appearance:none;
+      width:110px;
+      height:4px;
+      border-radius:999px;
+      background:linear-gradient(90deg,#fbbf24,#f97316);
+      outline:none;
+    }
+    input[type="range"]::-webkit-slider-thumb,
+    input[type="range"]::-moz-range-thumb{
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      background:#f9fafb;
+      border:2px solid #0f172a;
+      box-shadow:0 0 0 3px rgba(15,23,42,.7);
+      cursor:pointer;
+    }
+
+    .lines-panel{
+      margin-top:6px;
+      padding:10px;
+      border-radius:var(--radius-lg);
+      border:1px dashed var(--border);
+      background:rgba(15,23,42,.95);
+      max-height:215px;
+      overflow:auto;
+      scrollbar-width:thin;
+      scrollbar-color:rgba(148,163,184,.8) transparent;
+      font-size:12px;
+    }
+    .lines-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:4px;
+      font-size:11px;
+      color:var(--muted);
+    }
+    .lines-header strong{
+      font-size:11px;
+      color:var(--text);
+    }
+    .lines-header small{font-size:10px;}
+
+    ul.lines{
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .line-item{
+      display:flex;
+      align-items:flex-start;
+      gap:6px;
+      padding:5px 6px;
+      border-radius:var(--radius-md);
+      transition:background var(--transition),transform var(--transition);
+    }
+    .line-item:hover{
+      background:rgba(15,23,42,.85);
+      transform:translateY(-1px);
+    }
+    .line-index{
+      width:18px;
+      height:18px;
+      border-radius:7px;
+      background:rgba(15,23,42,.7);
+      font-size:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--muted);
+      flex-shrink:0;
+    }
+    .line-text{
+      flex:1;
+      font-size:11px;
+      color:var(--text);
+    }
+
+    .line-actions{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      margin-left:4px;
+      flex-shrink:0;
+    }
+    .btn-line{
+      border:none;
+      padding:4px 7px;
+      border-radius:999px;
+      font-size:10px;
+      background:rgba(15,23,42,.9);
+      color:var(--text);
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      cursor:pointer;
+      transition:background var(--transition),transform var(--transition),box-shadow var(--transition);
+    }
+    .btn-line span.icon{font-size:11px;}
+    .btn-line:hover{
+      background:rgba(15,23,42,1);
+      transform:translateY(-1px);
+      box-shadow:0 8px 18px rgba(15,23,42,.9);
+    }
+
+    .line-item.active{
+      background:var(--accent-soft);
+    }
+    .line-item.active .line-index{
+      background:var(--accent);
+      color:#020617;
+      font-weight:600;
+    }
+    .line-item.active .line-text{
+      font-weight:500;
+    }
+
+    .status-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:10px;
+      color:var(--muted);
+      margin-top:4px;
+      flex-wrap:wrap;
+      gap:6px;
+    }
+    .status-dot{
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:var(--accent-strong);
+      box-shadow:0 0 10px rgba(234,179,8,.9);
+      margin-right:4px;
+    }
+    .status-row span.value-strong{
+      color:var(--text);
+      font-weight:500;
+    }
+
+    .warning{
+      margin-top:6px;
+      font-size:10px;
+      color:#fecaca;
+      display:none;
+    }
+
+    footer{
+      margin-top:auto;
+      padding-top:10px;
+      font-size:10px;
+      color:var(--muted);
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    footer a{
+      color:var(--muted);
+      text-decoration:none;
+    }
+    footer a:hover{text-decoration:underline;}
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <div class="logo">
+        <div class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64">
+            <path d="M18 45V19a3 3 0 0 1 4.5-2.6L39 24h7a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-7l-16.5 7.6A3 3 0 0 1 18 45Z"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <div class="logo-title">LEARN2SPEAK · ACADEMY</div>
+          <div class="logo-sub">Pratique orale – sans compte, sans serveur</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="pill-badge">
+          <span class="pill-dot"></span>
+          Temps réel – synthèse vocale locale
+        </div>
+        <button class="btn-ghost" type="button" id="btnReset">
+          <span class="icon">🧹</span>
+          Réinitialiser la page
+        </button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="hero">
+        <div class="eyebrow">
+          <span class="eyebrow-pill">Pratique orale</span>
+          <span>Espagnol · Russe · Français</span>
+        </div>
+        <h1>
+          Lis ton script, <span class="gradient">ligne par ligne</span>,<br>
+          avec de vraies voix natives.
+        </h1>
+        <p class="hero-sub">
+          Colle ton dialogue, choisis la langue, puis fais lire chaque ligne à ton rythme.
+          Idéal pour pratiquer la prononciation en espagnol et en russe (ou revoir un texte en français).
+        </p>
+
+        <div class="hero-grid">
+          <div class="hero-card">
+            <div class="hero-card-title">
+              <span class="icon">🎧</span> Écoute active
+            </div>
+            <div class="hero-card-body">
+              Lecture ligne par ligne, pause & reprise, parfait pour répéter à voix haute.
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="hero-card-title">
+              <span class="icon">🖥️</span> 100&nbsp;% navigateur
+            </div>
+            <div class="hero-card-body">
+              Tout se passe sur ton appareil. Aucune donnée envoyée sur un serveur.
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="hero-card-title">
+              <span class="icon">🌍</span> Voix natives système
+            </div>
+            <div class="hero-card-body">
+              Utilise les voix espagnoles, russes ou françaises déjà installées sur ton OS.
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="hero-card-title">
+              <span class="icon">⚡</span> Zéro friction
+            </div>
+            <div class="hero-card-body">
+              Colle le texte · Prépare les lignes · Appuie sur ▶︎ et pratique.
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-footnote">
+          <span class="dot"></span>
+          Fonctionne mieux sur Chrome / Edge sur ordinateur, avec les voix installées pour chaque langue.
+        </div>
+      </section>
+
+      <section class="card" aria-label="Outil de lecture à voix haute">
+        <div class="card-header">
+          <div class="card-title-group">
+            <div class="card-title">Script de pratique orale</div>
+            <div class="card-sub">Une ligne = une réplique. Chaque retour à la ligne crée une nouvelle phrase à lire.</div>
+          </div>
+          <div class="pill-stack">
+            <div class="pill-lang">
+              <span class="flag">🇪🇸</span><strong>Espagnol</strong><span>es-ES / es-MX</span>
+            </div>
+            <div class="pill-lang">
+              <span class="flag">🇷🇺</span><strong>Russe</strong><span>ru-RU</span>
+            </div>
+            <div class="pill-lang">
+              <span class="flag">🇫🇷</span><strong>Français</strong><span>fr-FR / fr-CA</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="field-label-row">
+            <div>
+              <strong>Colle ton texte de pratique</strong>
+              <span class="badge-inline">Une phrase par ligne</span>
+            </div>
+            <small>Astuce : tu peux mélanger plusieurs langues, mais choisis la langue avant de lire.</small>
+          </div>
+
+          <div class="textarea-wrap">
+            <textarea id="textInput" placeholder="Exemple :&#10;Hola, ¿cómo estás?&#10;Muy bien, gracias. ¿Y tú?&#10;Мне нравится учить языки.&#10;J’adore pratiquer à voix haute."></textarea>
+            <div class="textarea-footer">
+              <div class="tiny-pill">
+                <span>Entrée</span><span> = nouvelle ligne</span>
+              </div>
+              <div class="tiny-pill">
+                <span class="kbd">Ctrl</span><span>+</span><span class="kbd">Entrée</span><span> = préparer les lignes</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="controls-row">
+            <div class="primary-controls">
+              <button class="btn-primary" type="button" id="btnPrepare">
+                <span class="icon">✨</span>
+                Préparer les lignes
+              </button>
+              <button class="btn-secondary" type="button" id="btnPlayAll" disabled>
+                <span class="icon">▶️</span>
+                Tout lire
+              </button>
+              <button class="btn-secondary" type="button" id="btnPause" disabled>
+                <span class="icon">⏸️</span>
+                Pause / Reprendre
+              </button>
+              <button class="btn-secondary" type="button" id="btnStop" disabled>
+                <span class="icon">⏹️</span>
+                Stop
+              </button>
+            </div>
+
+            <div class="secondary-controls">
+              <div class="select-row">
+                <label for="languageSelect">Langue de la voix :</label>
+                <select id="languageSelect">
+                  <option value="es">Espagnol (ES / MX)</option>
+                  <option value="ru">Russe</option>
+                  <option value="fr">Français</option>
+                </select>
+              </div>
+              <div class="slider-row">
+                <span>Vitesse :</span>
+                <input type="range" id="rateSlider" min="0.6" max="1.4" step="0.05" value="1">
+                <span class="value" id="rateValue">1.00×</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lines-panel" id="linesPanel">
+            <div class="lines-header">
+              <div><strong>Lignes générées</strong></div>
+              <div><small id="linesCount">0 ligne</small></div>
+            </div>
+            <ul class="lines" id="linesList">
+              <!-- lignes auto-remplies -->
+            </ul>
+          </div>
+
+          <div class="status-row">
+            <div>
+              <span class="status-dot" id="statusDot"></span>
+              <span id="statusText">En attente : colle ton texte puis clique sur « Préparer les lignes ».</span>
+            </div>
+            <div>
+              <span>Voix sélectionnée :</span>
+              <span class="value-strong" id="voiceInfo">Aucune (par défaut système)</span>
+            </div>
+          </div>
+
+          <p class="warning" id="warningUnsupported">
+            ⚠️ La synthèse vocale Web Speech n’est pas supportée par ce navigateur. Essaie avec Chrome ou Edge sur ordinateur.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Learn2Speak · Outil de pratique orale locale</span>
+      <span>Conçu pour l’étude personnelle · Aucune donnée envoyée sur un serveur.</span>
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      const textInput = document.getElementById('textInput');
+      const btnPrepare = document.getElementById('btnPrepare');
+      const btnPlayAll = document.getElementById('btnPlayAll');
+      const btnPause = document.getElementById('btnPause');
+      const btnStop = document.getElementById('btnStop');
+      const btnReset = document.getElementById('btnReset');
+      const languageSelect = document.getElementById('languageSelect');
+      const rateSlider = document.getElementById('rateSlider');
+      const rateValue = document.getElementById('rateValue');
+      const linesList = document.getElementById('linesList');
+      const linesCount = document.getElementById('linesCount');
+      const linesPanel = document.getElementById('linesPanel');
+      const statusText = document.getElementById('statusText');
+      const statusDot = document.getElementById('statusDot');
+      const voiceInfo = document.getElementById('voiceInfo');
+      const warningUnsupported = document.getElementById('warningUnsupported');
+
+      let lines = [];
+      let isPlayingAll = false;
+      let currentIndex = -1;
+      let voices = [];
+      let currentVoice = null;
+      let isPaused = false;
+
+      const hasSpeech = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+      if(!hasSpeech){
+        warningUnsupported.style.display = 'block';
+        statusText.textContent = 'Synthèse vocale non disponible sur ce navigateur.';
+        btnPrepare.disabled = true;
+        btnPlayAll.disabled = true;
+        btnPause.disabled = true;
+        btnStop.disabled = true;
+        return;
+      }
+
+      function updateRateDisplay(){
+        rateValue.textContent = Number(rateSlider.value).toFixed(2) + '×';
+      }
+      updateRateDisplay();
+
+      function getLangPrefix(code){
+        if(code === 'es') return 'es';
+        if(code === 'ru') return 'ru';
+        if(code === 'fr') return 'fr';
+        return '';
+      }
+
+      function pickVoice(){
+        if(!voices || !voices.length){
+          speechSynthesis.getVoices(); // trigger load
+          currentVoice = null;
+          voiceInfo.textContent = 'Aucune (par défaut système)';
+          return;
+        }
+        const prefix = getLangPrefix(languageSelect.value);
+        if(!prefix){
+          currentVoice = null;
+          voiceInfo.textContent = 'Aucune (par défaut système)';
+          return;
+        }
+        const matching = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith(prefix));
+        const localFirst = matching.sort((a,b)=>{
+          const al = a.localService ? 0 : 1;
+          const bl = b.localService ? 0 : 1;
+          if(al !== bl) return al - bl;
+          return a.name.localeCompare(b.name);
+        });
+        currentVoice = localFirst[0] || null;
+        if(currentVoice){
+          voiceInfo.textContent = currentVoice.name + ' (' + currentVoice.lang + ')';
+        } else {
+          voiceInfo.textContent = 'Aucune voix '+prefix+' trouvée (utilise la voix par défaut)';
+        }
+      }
+
+      function loadVoices(){
+        voices = speechSynthesis.getVoices();
+        pickVoice();
+      }
+      loadVoices();
+      if(typeof speechSynthesis !== 'undefined'){
+        speechSynthesis.onvoiceschanged = loadVoices;
+      }
+
+      function setStatus(text, state){
+        statusText.textContent = text;
+        if(state === 'idle'){
+          statusDot.style.background = '#e11d48';
+          statusDot.style.boxShadow = '0 0 10px rgba(190,24,93,.6)';
+        } else if(state === 'ready'){
+          statusDot.style.background = '#22c55e';
+          statusDot.style.boxShadow = '0 0 10px rgba(34,197,94,.9)';
+        } else if(state === 'playing'){
+          statusDot.style.background = '#f97316';
+          statusDot.style.boxShadow = '0 0 10px rgba(249,115,22,.9)';
+        } else if(state === 'paused'){
+          statusDot.style.background = '#facc15';
+          statusDot.style.boxShadow = '0 0 10px rgba(234,179,8,.9)';
+        }
+      }
+
+      function clearActiveLines(){
+        const items = linesList.querySelectorAll('.line-item');
+        items.forEach(li => li.classList.remove('active'));
+      }
+
+      function renderLines(){
+        linesList.innerHTML = '';
+        if(!lines.length){
+          linesCount.textContent = '0 ligne';
+          setStatus('En attente : colle ton texte puis clique sur « Préparer les lignes ».','idle');
+          btnPlayAll.disabled = true;
+          btnPause.disabled = true;
+          btnStop.disabled = true;
+          return;
+        }
+        lines.forEach((line, index)=>{
+          const li = document.createElement('li');
+          li.className = 'line-item';
+          li.dataset.index = index;
+
+          const indexSpan = document.createElement('span');
+          indexSpan.className = 'line-index';
+          indexSpan.textContent = index+1;
+
+          const textSpan = document.createElement('div');
+          textSpan.className = 'line-text';
+          textSpan.textContent = line;
+
+          const actions = document.createElement('div');
+          actions.className = 'line-actions';
+
+          const btnPlay = document.createElement('button');
+          btnPlay.type = 'button';
+          btnPlay.className = 'btn-line';
+          btnPlay.innerHTML = '<span class="icon">▶️</span><span>Lire</span>';
+          btnPlay.addEventListener('click',()=>{
+            playSingleLine(index);
+          });
+
+          actions.appendChild(btnPlay);
+          li.appendChild(indexSpan);
+          li.appendChild(textSpan);
+          li.appendChild(actions);
+          linesList.appendChild(li);
+        });
+        linesCount.textContent = lines.length + (lines.length > 1 ? ' lignes' : ' ligne');
+        setStatus('Lignes prêtes. Clique sur ▶︎ pour lire une ligne ou « Tout lire ».','ready');
+        btnPlayAll.disabled = false;
+        btnPause.disabled = false;
+        btnStop.disabled = false;
+        linesPanel.scrollTop = 0;
+      }
+
+      function prepareLines(){
+        const raw = textInput.value || '';
+        const rawLines = raw.split(/\r?\n/);
+        lines = rawLines.map(l => l.trim()).filter(Boolean);
+        currentIndex = -1;
+        isPlayingAll = false;
+        isPaused = false;
+        speechSynthesis.cancel();
+        clearActiveLines();
+        renderLines();
+      }
+
+      function buildUtterance(text){
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.rate = parseFloat(rateSlider.value) || 1;
+        utter.pitch = 1;
+        const prefix = getLangPrefix(languageSelect.value);
+        if(prefix){
+          utter.lang = prefix === 'es' ? 'es-ES' :
+                       prefix === 'ru' ? 'ru-RU' :
+                       'fr-FR';
+        }
+        if(currentVoice){
+          utter.voice = currentVoice;
+        }
+        return utter;
+      }
+
+      function playSingleLine(index){
+        if(!lines[index]) return;
+        isPlayingAll = false;
+        isPaused = false;
+        currentIndex = index;
+        speechSynthesis.cancel();
+        clearActiveLines();
+        const targetLi = linesList.querySelector('.line-item[data-index="'+index+'"]');
+        if(targetLi){
+          targetLi.classList.add('active');
+          targetLi.scrollIntoView({behavior:'smooth',block:'center'});
+        }
+        setStatus('Lecture de la ligne '+(index+1)+' sur '+lines.length+'…','playing');
+        const utter = buildUtterance(lines[index]);
+        utter.onend = ()=>{
+          clearActiveLines();
+          currentIndex = -1;
+          if(!isPlayingAll){
+            setStatus('Lecture terminée pour cette ligne.','ready');
+          }
+        };
+        utter.onerror = ()=>{
+          setStatus('Erreur pendant la lecture. Vérifie les voix du système.','idle');
+          clearActiveLines();
+          currentIndex = -1;
+        };
+        speechSynthesis.speak(utter);
+      }
+
+      function playAll(startIndex = 0){
+        if(!lines.length) return;
+        isPlayingAll = true;
+        isPaused = false;
+        currentIndex = startIndex;
+        speechSynthesis.cancel();
+        speakNextInQueue();
+      }
+
+      function speakNextInQueue(){
+        if(currentIndex < 0 || currentIndex >= lines.length){
+          isPlayingAll = false;
+          isPaused = false;
+          clearActiveLines();
+          setStatus('Lecture complète terminée.','ready');
+          return;
+        }
+        clearActiveLines();
+        const li = linesList.querySelector('.line-item[data-index="'+currentIndex+'"]');
+        if(li){
+          li.classList.add('active');
+          li.scrollIntoView({behavior:'smooth',block:'center'});
+        }
+        setStatus('Lecture de la ligne '+(currentIndex+1)+' sur '+lines.length+'…','playing');
+        const utter = buildUtterance(lines[currentIndex]);
+        utter.onend = ()=>{
+          currentIndex++;
+          if(isPlayingAll){
+            speakNextInQueue();
+          }else{
+            clearActiveLines();
+            setStatus('Lecture arrêtée.','ready');
+            currentIndex = -1;
+          }
+        };
+        utter.onerror = ()=>{
+          currentIndex++;
+          if(isPlayingAll){
+            speakNextInQueue();
+          }else{
+            clearActiveLines();
+            setStatus('Erreur pendant la lecture.','idle');
+            currentIndex = -1;
+          }
+        };
+        speechSynthesis.speak(utter);
+      }
+
+      btnPrepare.addEventListener('click', prepareLines);
+
+      textInput.addEventListener('keydown',(e)=>{
+        if(e.key === 'Enter' && (e.ctrlKey || e.metaKey)){
+          e.preventDefault();
+          prepareLines();
+        }
+      });
+
+      btnPlayAll.addEventListener('click',()=>{
+        if(!lines.length) return;
+        playAll(0);
+      });
+
+      btnPause.addEventListener('click',()=>{
+        if(!speechSynthesis.speaking) return;
+        if(!isPaused){
+          speechSynthesis.pause();
+          isPaused = true;
+          setStatus('Lecture en pause. Clique à nouveau pour reprendre.','paused');
+        }else{
+          speechSynthesis.resume();
+          isPaused = false;
+          setStatus('Lecture en cours…','playing');
+        }
+      });
+
+      btnStop.addEventListener('click',()=>{
+        speechSynthesis.cancel();
+        isPlayingAll = false;
+        isPaused = false;
+        currentIndex = -1;
+        clearActiveLines();
+        setStatus('Lecture arrêtée.','ready');
+      });
+
+      languageSelect.addEventListener('change',()=>{
+        pickVoice();
+        if(lines.length){
+          setStatus('Langue de voix mise à jour. Relance la lecture.','ready');
+        }
+      });
+
+      rateSlider.addEventListener('input',()=>{
+        updateRateDisplay();
+      });
+
+      btnReset.addEventListener('click',()=>{
+        speechSynthesis.cancel();
+        textInput.value = '';
+        lines = [];
+        currentIndex = -1;
+        isPlayingAll = false;
+        isPaused = false;
+        clearActiveLines();
+        renderLines();
+        languageSelect.value = 'es';
+        rateSlider.value = '1';
+        updateRateDisplay();
+        pickVoice();
+        setStatus('Page réinitialisée. Colle un nouveau texte pour recommencer.','idle');
+      });
+
+      setStatus('En attente : colle ton texte puis clique sur « Préparer les lignes ».','idle');
+    })();
+  </script>
+</body>
+</html>
